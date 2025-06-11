@@ -28,15 +28,6 @@ public partial class @PlayerController: IInputActionCollection2, IDisposable
             ""id"": ""1b018d51-1499-4975-a0af-3a8b06a8c5dc"",
             ""actions"": [
                 {
-                    ""name"": ""New action"",
-                    ""type"": ""Button"",
-                    ""id"": ""4fd067eb-df4b-47b6-88e6-eb6e3c19789d"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
                     ""name"": ""Move"",
                     ""type"": ""PassThrough"",
                     ""id"": ""19b15225-5980-4887-ad06-9aadf201f212"",
@@ -56,17 +47,6 @@ public partial class @PlayerController: IInputActionCollection2, IDisposable
                 }
             ],
             ""bindings"": [
-                {
-                    ""name"": """",
-                    ""id"": ""ffab53c1-228b-4958-8b67-cd4bbe067a55"",
-                    ""path"": """",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""New action"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
                 {
                     ""name"": ""2D Vector"",
                     ""id"": ""5c3c7598-5e78-4fe4-9726-c9641028f5e2"",
@@ -140,7 +120,6 @@ public partial class @PlayerController: IInputActionCollection2, IDisposable
 }");
         // Movement
         m_Movement = asset.FindActionMap("Movement", throwIfNotFound: true);
-        m_Movement_Newaction = m_Movement.FindAction("New action", throwIfNotFound: true);
         m_Movement_Move = m_Movement.FindAction("Move", throwIfNotFound: true);
         m_Movement_Jump = m_Movement.FindAction("Jump", throwIfNotFound: true);
     }
@@ -204,14 +183,12 @@ public partial class @PlayerController: IInputActionCollection2, IDisposable
     // Movement
     private readonly InputActionMap m_Movement;
     private List<IMovementActions> m_MovementActionsCallbackInterfaces = new List<IMovementActions>();
-    private readonly InputAction m_Movement_Newaction;
     private readonly InputAction m_Movement_Move;
     private readonly InputAction m_Movement_Jump;
     public struct MovementActions
     {
         private @PlayerController m_Wrapper;
         public MovementActions(@PlayerController wrapper) { m_Wrapper = wrapper; }
-        public InputAction @Newaction => m_Wrapper.m_Movement_Newaction;
         public InputAction @Move => m_Wrapper.m_Movement_Move;
         public InputAction @Jump => m_Wrapper.m_Movement_Jump;
         public InputActionMap Get() { return m_Wrapper.m_Movement; }
@@ -223,9 +200,6 @@ public partial class @PlayerController: IInputActionCollection2, IDisposable
         {
             if (instance == null || m_Wrapper.m_MovementActionsCallbackInterfaces.Contains(instance)) return;
             m_Wrapper.m_MovementActionsCallbackInterfaces.Add(instance);
-            @Newaction.started += instance.OnNewaction;
-            @Newaction.performed += instance.OnNewaction;
-            @Newaction.canceled += instance.OnNewaction;
             @Move.started += instance.OnMove;
             @Move.performed += instance.OnMove;
             @Move.canceled += instance.OnMove;
@@ -236,9 +210,6 @@ public partial class @PlayerController: IInputActionCollection2, IDisposable
 
         private void UnregisterCallbacks(IMovementActions instance)
         {
-            @Newaction.started -= instance.OnNewaction;
-            @Newaction.performed -= instance.OnNewaction;
-            @Newaction.canceled -= instance.OnNewaction;
             @Move.started -= instance.OnMove;
             @Move.performed -= instance.OnMove;
             @Move.canceled -= instance.OnMove;
@@ -264,7 +235,6 @@ public partial class @PlayerController: IInputActionCollection2, IDisposable
     public MovementActions @Movement => new MovementActions(this);
     public interface IMovementActions
     {
-        void OnNewaction(InputAction.CallbackContext context);
         void OnMove(InputAction.CallbackContext context);
         void OnJump(InputAction.CallbackContext context);
     }

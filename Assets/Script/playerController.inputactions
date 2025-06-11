@@ -6,15 +6,6 @@
             "id": "1b018d51-1499-4975-a0af-3a8b06a8c5dc",
             "actions": [
                 {
-                    "name": "New action",
-                    "type": "Button",
-                    "id": "4fd067eb-df4b-47b6-88e6-eb6e3c19789d",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                },
-                {
                     "name": "Move",
                     "type": "PassThrough",
                     "id": "19b15225-5980-4887-ad06-9aadf201f212",
@@ -34,17 +25,6 @@
                 }
             ],
             "bindings": [
-                {
-                    "name": "",
-                    "id": "ffab53c1-228b-4958-8b67-cd4bbe067a55",
-                    "path": "",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "New action",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
                 {
                     "name": "2D Vector",
                     "id": "5c3c7598-5e78-4fe4-9726-c9641028f5e2",
