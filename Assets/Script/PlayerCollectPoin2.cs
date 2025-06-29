@@ -1,8 +1,10 @@
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerCollectPoin : MonoBehaviour
+public class PlayerCollectPoin2 : MonoBehaviour
 {
-    public CollectPoin collectPoin;
+    public CollectPoin2 collectPoin;
 
 
     private void OnTriggerEnter2D(Collider2D other)

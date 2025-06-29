@@ -1,20 +1,21 @@
 using UnityEngine;
 using TMPro;
-using UnityEngine.SceneManagement; // Untuk load scene
+using UnityEngine.SceneManagement;
 
-
-public class CollectPoin : MonoBehaviour
+public class CollectPoin3 : MonoBehaviour
 {
     public int totalPoin = 0;
     public TextMeshProUGUI poinText;
     [SerializeField] private GameObject winpanel;
+
+        
 
     public void TambahPoin(int jumlah)
     {
         totalPoin += jumlah;
         UpdateUI();
 
-        if (totalPoin == 5)
+        if (totalPoin == 8)
         {
             winpanel.SetActive(true);
             Time.timeScale = 0f;
@@ -28,9 +29,9 @@ public class CollectPoin : MonoBehaviour
             poinText.text = "Poin: " + totalPoin;
     }
 
-    private void LoadLevel2()
+    private void LoadLevel3()
     {
-        SceneManager.LoadScene("Level2"); // Pastikan scene "Level2" sudah ditambahkan di Build Settings
+        SceneManager.LoadScene("Level3"); // Pastikan scene "Level2" sudah ditambahkan di Build Settings
     }
 
   
