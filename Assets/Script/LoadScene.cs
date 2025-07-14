@@ -16,6 +16,9 @@ public class LoadScene : MonoBehaviour
     public void resume(){
         Time.timeScale = 1;
     }
+     public void exitgame(){
+        Application.Quit();
+    }
 
     // Start is called before the first frame update
     void Start()

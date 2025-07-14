@@ -15,7 +15,7 @@ public class CollectPoin3 : MonoBehaviour
         totalPoin += jumlah;
         UpdateUI();
 
-        if (totalPoin == 8)
+        if (totalPoin == 15)
         {
             winpanel.SetActive(true);
             Time.timeScale = 0f;
